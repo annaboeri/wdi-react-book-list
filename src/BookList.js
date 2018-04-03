@@ -1,37 +1,27 @@
 import React from 'react'
-import books from './books.json'
 
 class BookList extends React.Component {
-  constructor(){
-    super()
-    this.state = {
-      value: ''
-    }
-  }
 
-  handleChange(evt){
-    console.log(evt.target.value)
+    state = { inputValue: '' }
+  
+  handleFilterChange(evt){
     this.setState({
-      value: evt.target.value
+      inputValue: evt.target.value
     })
   }
 
-
-
   render() {
     const books = this.props.books
+    const filteredBooks = books.filter((b) => {
+      return b.title.toLowerCase().includes(this.state.inputValue.toLowerCase())
+    })
     return (
       <div className="Books">
         <input className="input is-large" type="text" placeholder="Filter The List" 
-          value={this.state.value} onChange={this.handleChange.bind(this)} />
+           onChange={this.handleFilterChange.bind(this)} />
         <ul className="menu-list">
-       { books.map((b)=> {
-          if (this.state.value === ''){
-          return <li><a href={`/books/${b._id}`}>{b.title}</a></li>}
-          else {
-            if (b.title.includes(this.state.value))
-            return <li><a href={`/books/${b._id}`}>{b.title}</a></li>
-          }
+       { filteredBooks.map((b)=> {
+            return <li key={b._id}><a href={`/books/${b._id}`}>{b.title}</a></li>
        })}
         </ul>
       </div>

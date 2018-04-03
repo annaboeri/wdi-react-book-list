@@ -37,8 +37,8 @@ class App extends Component {
             {/* Right Column */}
             <div className="column is-8">
                 <Route path="/books/:id" render={(routeProps) => {
-                  console.log(routeProps.match.params.id)
-                  const book = this.state.books.find((b) => b._id === routeProps.match.params.id)
+                  const bookId = routeProps.match.params.id
+                  const book = this.state.books.find((b) => b._id === bookId)
                     return <BookDetail book={book}  />
                 }} />
             </div>

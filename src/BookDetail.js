@@ -19,7 +19,7 @@ class BookDetail extends React.Component {
               <li>Pages: {book.pages}</li>
               <li>Language: {book.language}</li>
               <li>Country: {book.country}</li>
-              <li><a href={book.link}>Wikipedia</a></li>
+              <li><a href={book.link} target="_blank">Wikipedia</a></li>
             </ul>
           </div>
         </div>
