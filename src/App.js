@@ -6,7 +6,6 @@ import './App.css'
 
 // OUR TOP 100 BOOKS IS A JSON ARRAY THAT CAN BE IMPORTED AND IS PARSED AUTOMATICALLY!
 import books from './books.json'
-console.log(books)
 
 class App extends Component {
 

@@ -1,14 +1,19 @@
 import React from 'react'
+import books from './books.json'
 
 class BookList extends React.Component {
   constructor(){
     super()
-    this.state = {value: ''}
+    this.state = {
+      value: ''
+    }
   }
 
   handleChange(evt){
     console.log(evt.target.value)
-    this.setState({value: evt.target.value})
+    this.setState({
+      value: evt.target.value
+    })
   }
 
 
@@ -21,7 +26,12 @@ class BookList extends React.Component {
           value={this.state.value} onChange={this.handleChange.bind(this)} />
         <ul className="menu-list">
        { books.map((b)=> {
-          return <li><a href={`/books/${b._id}`}>{b.title}</a></li>
+          if (this.state.value === ''){
+          return <li><a href={`/books/${b._id}`}>{b.title}</a></li>}
+          else {
+            if (b.title.includes(this.state.value))
+            return <li><a href={`/books/${b._id}`}>{b.title}</a></li>
+          }
        })}
         </ul>
       </div>
