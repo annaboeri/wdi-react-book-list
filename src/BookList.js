@@ -1,18 +1,32 @@
 import React from 'react'
 
-class Books extends React.Component {
+class BookList extends React.Component {
+  constructor(){
+    super()
+    this.state = {value: ''}
+  }
+
+  handleChange(evt){
+    console.log(evt.target.value)
+    this.setState({value: evt.target.value})
+  }
+
+
+
   render() {
+    const books = this.props.books
     return (
       <div className="Books">
-        <input className="input is-large" type="text" placeholder="Filter The List" />
+        <input className="input is-large" type="text" placeholder="Filter The List" 
+          value={this.state.value} onChange={this.handleChange.bind(this)} />
         <ul className="menu-list">
-          <li><a href="#">The Possessed</a></li>
-          <li><a href="#">Middlemarch</a></li>
-          <li><a href="#">Invisible Man</a></li>
+       { books.map((b)=> {
+          return <li><a href={`/books/${b._id}`}>{b.title}</a></li>
+       })}
         </ul>
       </div>
     )
   }
 }
 
-export default Books
+export default BookList
